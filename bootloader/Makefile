@@ -7,7 +7,7 @@ NASM=nasm
 GCC=gcc
 QEMU64=qemu-system-x86_64
 
-ASM_files=bootloader.asm
+ASM_files=boot.asm
 
 all: ${IMG}
 
@@ -24,7 +24,8 @@ gdb:
 	gdb -ex 'target remote localhost:1234' \
 			-ex 'set architecture i8086' \
 			-ex 'break *0x7c00' \
-			-ex 'continue'
+			-ex 'continue' \
+			-ex 'layout asm'
 
 clean:
 	rm -rf *.bin *.img *.o
