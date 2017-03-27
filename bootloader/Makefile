@@ -7,11 +7,17 @@ NASM=nasm
 GCC=gcc
 QEMU64=qemu-system-x86_64
 
+CFLAGS=-fno-leading-underscore -nostdlib -nostdinc -fno-builtin -fno-stack-protector
+
 ASM_files=boot.asm
+C_files=kernel.c
 
 all: ${IMG}
 
-${IMG}: ${ASM_files}
+gdt.asm: gdt.yaml
+	python ../tools/gdt_gen.py gdt.yaml > gdt.asm
+
+${IMG}: ${ASM_files} gdt.asm
 	${NASM} -f bin -o ${IMG} ${ASM_files}
 
 run: all

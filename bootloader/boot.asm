@@ -28,15 +28,13 @@ init_pmode:
   mov eax, cr0
   or eax, 0x1
   mov cr0, eax
-  jmp long 0x08:main32
+  jmp long CODE_SEG:main32
 
 bits 32
 
 main32:
 
 init_segs:
-  mov ax, CODE_SEG
-  mov cs, ax
   mov ax, DATA_SEG
   mov ds, ax
   mov ss, ax

@@ -6,8 +6,8 @@ import os
 
 def write_desc(d):
     print(f"gdt_{d['name']}:")
-    print(f"  dd {hex(d['limit'] & 0xffff)}")
-    print(f"  dd {hex(d['base'] & 0xffff)}")
+    print(f"  dw {hex(d['limit'] & 0xffff)}")
+    print(f"  dw {hex(d['base'] & 0xffff)}")
     print(f"  db {hex((d['base'] >> 16) & 0xff)}")
 
     a = d['access']
@@ -24,8 +24,9 @@ def write_desc(d):
 
     limit_flags = d['limit'] >> 16 | \
                     d['flags']['gr'] << 7 | d['flags']['sz'] << 6
+    limit_flags &= 0xff;
 
-    print(f"  db {bin(limit_flags)[2:]}b")
+    print(f"  db {bin(limit_flags)[2:].zfill(8)}b")
     print(f"  db {hex((d['base'] >> 24) & 0xff)}")
     print()
 

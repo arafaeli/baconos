@@ -8,9 +8,9 @@ descriptors:
       pr: 1           # Must be 1 for valid descriptor
       priv: 0         # Ring-0 priviledge
       ex: 1           # Executable
-      dc: 1           # Executable outside of priv level
+      dc: 0           # Executable outside of priv level
       rw: 1           # Readable (code)
-      ac: 0           # (Unused, cpu sets this to 1 later on)
+      ac: 1           # (Unused, cpu sets this to 1 later on)
     flags:
       gr: 1           # Limit is page granularity (1 = 4KB)
       sz: 1           # 32 bit protected mode
@@ -24,9 +24,9 @@ descriptors:
       pr: 1           # Must be 1 for valid descriptor
       priv: 0         # Ring-0 priviledge
       ex: 0           # Non-Executable (data)
-      dc: 1           # Segment grows down
+      dc: 0           # Segment grows down
       rw: 1           # Writable (data)
-      ac: 0           # (Unused, cpu sets this to 1 later on)
+      ac: 1           # (Unused, cpu sets this to 1 later on)
     flags:
       gr: 1           # Limit is page granularity (1 = 4KB)
       sz: 1           # 32 bit protected mode
